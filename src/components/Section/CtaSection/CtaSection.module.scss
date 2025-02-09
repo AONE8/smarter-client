@@ -1,0 +1,50 @@
+.cta {
+  padding: 6.6rem 12rem 10rem 0;
+  display: flex;
+  justify-content: space-between;
+
+  background-image: linear-gradient(
+    136deg,
+    #2830f7 0%,
+    #1a59f8 36%,
+    #1074f8 74%,
+    #019ff9 100%
+  );
+
+  .imgbox {
+    position: relative;
+    width: 47.9rem;
+    height: 71.9rem;
+    overflow: hidden;
+    border-radius: 0 25px 25px 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: rgba(0, 158, 250, 0.52);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: fill-box;
+      filter: saturate(0.7);
+      z-index: 1;
+    }
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8.1rem;
+
+    max-width: 50.2rem;
+  }
+}

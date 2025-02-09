@@ -1,0 +1,18 @@
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+}
+
+.nav-list a:link,
+.nav-list a:visited {
+  display: block;
+  padding: 1rem 4.5rem;
+  border-radius: 2.4rem;
+  background-color: rgba(1, 159, 249, 32%);
+}
+
+.nav-list a.active,
+.nav-list a:hover {
+  background-color: rgba(1, 159, 249, 64%);
+}

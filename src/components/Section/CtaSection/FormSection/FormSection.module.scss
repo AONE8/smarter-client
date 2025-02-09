@@ -1,0 +1,28 @@
+.form-section {
+  > p {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 3.7rem;
+  }
+
+  > form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6rem;
+  }
+
+  .inputs-container {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3.8rem;
+  }
+
+  .action-box {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+  }
+}

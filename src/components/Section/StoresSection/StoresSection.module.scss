@@ -1,0 +1,25 @@
+.stores div {
+  row-gap: 4.7rem;
+}
+
+.logo {
+  height: 4.5rem;
+  justify-self: center;
+  align-self: center;
+
+  filter: saturate(0);
+
+  &:hover {
+    filter: saturate(1);
+  }
+
+  &:nth-last-child(1) {
+    height: 8.2rem;
+  }
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      grid-column: span if($i > 3, 6, 4);
+    }
+  }
+}

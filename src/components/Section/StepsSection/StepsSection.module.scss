@@ -1,0 +1,56 @@
+.steps {
+  background-image: linear-gradient(
+    136deg,
+    #2830f7 0%,
+    #1a59f8 36%,
+    #1074f8 74%,
+    #019ff9 100%
+  );
+
+  > h2 {
+    color: #fff;
+  }
+
+  @for $i from 0 through 2 {
+    :nth-child(#{$i + 1}) {
+      grid-column: (2 + 4 * $i) / span 3;
+    }
+  }
+
+  .step {
+    color: #fff;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 3rem;
+    .step-number {
+      border: 5px solid #fff;
+      height: 10rem;
+      width: 10rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4.8rem;
+      border-radius: 19px;
+    }
+    .step-description {
+      text-align: left;
+      font-size: 1.8rem;
+    }
+    .step-icon-container {
+      width: 11.75rem;
+      height: 11.75rem;
+      background-color: rgba(255, 255, 255, 50%);
+      border-radius: 50%;
+      align-self: flex-end;
+      margin-top: auto;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > img {
+        width: 70%;
+      }
+    }
+  }
+}

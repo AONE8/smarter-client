@@ -1,0 +1,33 @@
+nav.navigation {
+  display: flex;
+  width: 100%;
+  padding: 2.3rem 7rem 0;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 2rem;
+  font-family: sans-serif;
+}
+
+nav.navigation a {
+  text-decoration: none;
+  color: #fff;
+}
+
+a.image-container > img {
+  height: 5.3rem;
+}
+
+nav.navigation > a.btn:link,
+nav.navigation > a.btn:visited {
+  display: block;
+  padding: 1rem 4.5rem;
+  border-radius: 2.4rem;
+  background-color: rgba(255, 255, 255, 45%);
+}
+
+nav.navigation > a.btn:hover,
+nav.navigation > a.btn:active {
+  background-color: rgba(255, 255, 255, 90%);
+  color: #1a59f8;
+}

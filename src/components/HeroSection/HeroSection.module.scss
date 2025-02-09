@@ -1,0 +1,70 @@
+@import "../../index.scss";
+
+.hero-section {
+  @include container;
+  margin: 6rem 0;
+}
+
+.hero-section > h1 {
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 3;
+  font-size: 7.2rem;
+  text-align: left;
+  font-family: "Arial Narrow";
+  font-weight: 400;
+  color: #fff;
+}
+
+.actions {
+  grid-column: 1 / span 4;
+  grid-row: 5 / 7;
+  align-self: end;
+  display: flex;
+  gap: 3rem;
+
+  .main-btn:link,
+  .main-btn:visited {
+    background-color: rgb(255, 255, 255, 0.8);
+    color: #1a59f8;
+    box-shadow: none;
+  }
+
+  .main-btn:hover {
+    background-color: rgb(255, 255, 255, 1);
+  }
+
+  > a:link,
+  > a:visited {
+    display: block;
+    padding: 1rem 4.5rem;
+    border-radius: 2.4rem;
+    text-decoration: none;
+    font-size: 1.6rem;
+
+    color: #fff;
+    box-shadow: inset 0px 0px 0px 1px #fff;
+  }
+
+  > a:hover {
+    background-color: rgb(255, 255, 255, 0.6);
+    box-shadow: none;
+  }
+}
+
+.images {
+  grid-column: -1 / -6;
+  grid-row: 1 / span 6;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5rem;
+
+  > img {
+    width: 14rem;
+  }
+
+  > img[src*="laptop"] {
+    width: 16.7rem;
+  }
+}

@@ -1,0 +1,18 @@
+@import "../../index.scss";
+
+.section {
+  padding-bottom: 6.5rem;
+  > h2 {
+    font-size: 3.6rem;
+    font-weight: 600;
+    padding: 6.5rem 0 7.2rem;
+  }
+
+  .container {
+    @include container;
+  }
+}
+
+.highlighted {
+  font-weight: 600;
+}
