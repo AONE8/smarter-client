@@ -1,0 +1,58 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  width: 40rem;
+  padding: 3rem;
+  background-color: rgba(255, 255, 255, 0.629);
+  z-index: 1000;
+
+  label {
+    color: #019ff9;
+  }
+
+  input {
+    border: 1px solid #019ff9;
+  }
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link:link,
+.link:visited {
+  color: #1a59f8;
+  text-decoration: none;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #1a59f8;
+  transition: padding ease-in 0.1s;
+}
+
+.link:hover {
+  padding-inline: 2rem;
+  border-width: 2px;
+}
+
+.link:active {
+  outline: 2px solid rgba(26, 89, 248, 0.55);
+  outline-offset: 2px;
+  border-bottom: none;
+  border-radius: 9px;
+}
+
+.inputs-container {
+  display: inherit;
+  flex-direction: inherit;
+  gap: inherit;
+  max-height: 25rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

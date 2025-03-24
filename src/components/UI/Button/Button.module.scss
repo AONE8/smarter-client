@@ -1,30 +1,40 @@
 .btn {
   display: block;
-  padding: 1rem 4.5rem;
-  border-radius: 2.4rem;
+  padding: 1rem 3rem;
+  border-radius: 9px;
   text-decoration: none;
   font-size: 1.6rem;
+
   border: none;
-  background-color: transparent;
+  background-color: rgb(255, 255, 255, 1);
 
-  color: #fff;
-  box-shadow: inset 0px 0px 0px 1px #fff;
+  color: #019ff9;
+  box-shadow: inset 0px 0px 0px 1px #019ff9;
 
-  &:hover {
-    background-color: rgb(255, 255, 255, 0.6);
-    box-shadow: none;
-  }
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #019ef954;
+  box-shadow: none;
+}
+
+.btn:active {
+  outline: 5px solid #019ef954;
+  background-color: rgb(255, 255, 255, 1);
+  outline-offset: 2px;
 }
 
 .btn[type="submit"] {
-  background-color: #1a59f8;
+  background-color: #019ff98c;
+  color: #fff;
   box-shadow: none;
+}
 
-  background-color: rgb(255, 255, 255, 0.8);
-  color: #1a59f8;
-  box-shadow: none;
+.btn[type="submit"]:hover {
+  background-color: #1a59f88c;
+}
 
-  &:hover {
-    background-color: rgb(255, 255, 255, 1);
-  }
+.btn[type="submit"]:active {
+  outline-color: #1a59f88c;
 }

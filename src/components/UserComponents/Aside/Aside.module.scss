@@ -1,0 +1,233 @@
+.aside {
+  grid-area: 1 / 1 / -1 / 2;
+  background-image: linear-gradient(
+    136deg,
+    #2830f7 0%,
+    #1a59f8 36%,
+    #1074f8 74%,
+    #019ff9 100%
+  );
+
+  padding: 2rem 1rem;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3rem;
+}
+
+.avatar {
+  display: inline-block;
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  background-color: #fff;
+
+  font-size: 6rem;
+  text-align: center;
+  color: #2830f7;
+}
+
+.info-box,
+.actions-box,
+.form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 9px;
+  padding: 1.6rem 1rem;
+
+  background-color: #ffffff5e;
+
+  & > h4 {
+    text-transform: uppercase;
+  }
+}
+
+.info-box {
+  p {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid #fff;
+    border-radius: 9px;
+
+    padding: 0.5rem;
+  }
+}
+
+.actions-box {
+  button {
+    font-size: 1.2rem;
+    width: 100%;
+    font-weight: 500;
+
+    &:hover {
+      box-shadow: none;
+      color: #fff;
+    }
+
+    &:active {
+      outline-width: 5px;
+      outline-style: solid;
+      background-color: #fff;
+    }
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.edit-btn {
+  box-shadow: inset 0px 0px 0px 1px #1a59f8;
+  color: #1a59f8;
+
+  &:hover {
+    background-color: rgba(26, 89, 248, 0.33);
+  }
+
+  &:active {
+    outline-color: rgba(26, 89, 248, 0.33);
+    color: #1a59f8 !important;
+  }
+}
+
+.change-pswd-btn {
+  box-shadow: inset 0px 0px 0px 1px #ffaa00;
+  color: #ffaa00;
+
+  &:hover {
+    background-color: #ffaa0054;
+  }
+
+  &:active {
+    outline-color: #ffaa0054;
+    color: #ffaa00 !important;
+  }
+}
+
+.history-btn {
+  box-shadow: inset 0px 0px 0px 1px #076700;
+  color: #076700;
+
+  &:hover {
+    background-color: #07670054;
+  }
+
+  &:active {
+    outline-color: #07670054;
+    color: #076700 !important;
+  }
+}
+
+.delete-btn {
+  box-shadow: inset 0px 0px 0px 1px #ff1100;
+  color: #ff1100;
+
+  &:hover {
+    background-color: #ff110054;
+  }
+
+  &:active {
+    outline-color: #ff110054;
+    color: #ff1100 !important;
+  }
+}
+
+.form {
+  position: relative;
+  input {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid #fff;
+    border-radius: 9px;
+    color: inherit;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    outline: none;
+
+    padding: 0.5rem;
+
+    &::placeholder {
+      color: inherit;
+    }
+
+    &:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.518);
+    }
+  }
+}
+
+.form-actions {
+  position: absolute;
+  display: flex;
+  flex-flow: column nowrap;
+
+  gap: 1rem;
+  top: 0;
+  right: 0;
+
+  transform: translate(13rem, -2rem);
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 6px;
+    background-color: #fff;
+
+    padding: 0.2rem;
+
+    cursor: pointer;
+
+    &:hover {
+      border-color: transparent;
+    }
+
+    &:active {
+      outline-width: 2px;
+      outline-style: solid;
+      outline-offset: 2px;
+      background-color: #fff;
+    }
+  }
+}
+
+.form-edit-btn {
+  color: green;
+  border: 1px solid green;
+
+  &:hover {
+    background-color: rgba(0, 128, 0, 0.5);
+  }
+
+  &:active {
+    outline-color: rgba(0, 128, 0, 0.5);
+  }
+}
+
+.form-cancel-btn {
+  color: red;
+  border: 1px solid red;
+
+  &:hover {
+    background-color: rgba(128, 0, 0, 0.5);
+  }
+
+  &:active {
+    outline-color: rgba(128, 0, 0, 0.5);
+  }
+}
+
+.form-clear-btn {
+  color: skyblue;
+  border: 1px solid skyblue;
+
+  &:hover {
+    background-color: rgba(135, 207, 235, 0.5);
+  }
+
+  &:active {
+    outline-color: rgba(135, 207, 235, 0.5);
+  }
+}

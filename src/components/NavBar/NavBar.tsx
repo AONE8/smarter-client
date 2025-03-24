@@ -11,7 +11,7 @@ export default function NavBar() {
         <img src={logo} alt="A brain with text 'Smarter'" />
       </Link>
       <NavList />
-      <Link to="/signup" className={classes["btn"]}>
+      <Link to="/login" className={classes["btn"]}>
         Увійти
       </Link>
     </nav>

@@ -1,0 +1,69 @@
+.main {
+  grid-area: 2 / 2 / -1 / -1;
+  padding: 3rem 1rem 1rem 1rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+}
+
+.device-form {
+  padding-top: 2rem;
+  padding-inline: 1rem;
+  padding-bottom: 1rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+  width: 65%;
+  margin-inline: auto;
+}
+
+.fieldset {
+  flex: 1 1 calc(33% - 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+
+  label {
+    cursor: pointer;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 9px;
+    transition: all ease-out 0.1s;
+
+    &:hover {
+      outline: 5px solid rgba(26, 89, 248, 0.3);
+      outline-offset: 2px;
+      color: rgb(26, 89, 248);
+
+      img {
+        filter: brightness(0.8);
+        transform: scale(1.1);
+      }
+    }
+
+    &:active {
+      outline: 2px solid rgba(26, 89, 248, 0.1);
+      outline-offset: 5px;
+      img {
+        filter: brightness(1.5);
+      }
+    }
+  }
+
+  input {
+    display: none;
+  }
+
+  span {
+    font-size: 1.4rem;
+  }
+
+  img {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    transition: all ease-out 0.5s;
+  }
+}

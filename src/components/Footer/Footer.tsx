@@ -5,7 +5,10 @@ import footerClassses from "./Footer.module.scss";
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (

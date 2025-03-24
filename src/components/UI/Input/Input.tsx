@@ -2,7 +2,7 @@ import importClasses from "./Input.module.scss";
 
 interface InputProps {
   name: string;
-  type: "text" | "password" | "number";
+  type: "text" | "password" | "number" | "email";
   label: string;
 }
 
