@@ -1,0 +1,196 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+$delete-btn-color: #f72828;
+
+.history-section {
+  padding: 2rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.6rem;
+  min-height: 0;
+
+  @media screen and (max-width: 794px) {
+    grid-column: 1 / -1;
+  }
+}
+
+.title {
+  @include user-title;
+  flex-shrink: 0;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+
+  flex-grow: 1;
+
+  min-height: 0;
+  gap: 2rem;
+}
+
+.history-item {
+  border: 1px solid map.get($main-color, "light");
+  border-radius: 9px;
+  padding: 0.6rem;
+  transition: all 0.1s ease-in;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+
+  position: relative;
+  max-width: 65rem;
+  justify-items: start;
+  align-items: center;
+
+  font-size: 1.2rem;
+}
+
+.img-container {
+  @include element-size(10rem);
+  grid-row: 1 / 4;
+
+  & > img {
+    @include element-size(100%);
+    object-fit: contain;
+  }
+}
+
+.item-tag {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9px;
+  color: $white-color;
+
+  &.smartphone {
+    background-color: map.get($main-color, "light");
+  }
+
+  &.laptop {
+    background-color: map.get($main-color, "dark");
+  }
+
+  &.monoblock {
+    background-color: map.get($main-color, "middledark");
+  }
+
+  &.watch {
+    background-color: map.get($main-color, "middlelight");
+  }
+}
+
+.item-price {
+  grid-row: 2 / 3;
+  grid-column: 2 / 6;
+}
+
+.item-title {
+  grid-column: 2 / 6;
+  grid-row: 1 / 2;
+
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: start;
+}
+
+.item-date {
+  grid-column: 4 / 6;
+  grid-row: 3 / 4;
+
+  font-size: 0.9rem;
+  font-style: italic;
+  justify-self: end;
+}
+
+a.item-link:link,
+a.item-link:visited {
+  grid-column: 2 / 4;
+  grid-row: 3 / 4;
+
+  font-size: 0.8rem;
+  transform-origin: center;
+}
+
+.delete-form {
+  grid-column: 6 / 7;
+  grid-row: 1 / span 3;
+  justify-self: center;
+
+  > button {
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    height: fit-content;
+    @include flex-center;
+    transition: all 0.3s ease-in;
+
+    cursor: pointer;
+
+    &:hover {
+      color: $white-color;
+      box-shadow: inset 0px 0px 0px 10px $delete-btn-color;
+    }
+
+    &:active {
+      color: $delete-btn-color;
+      box-shadow: inset 0px 0px 0px 1px $delete-btn-color;
+    }
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .history-item {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+
+    row-gap: 1rem;
+    column-gap: 0.5rem;
+  }
+
+  .img-container {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+  }
+
+  .delete-form {
+    grid-column: 2 / 3;
+    grid-row: 1 / span 1;
+
+    justify-self: end;
+    align-self: start;
+  }
+
+  .item-title {
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+  }
+
+  .item-price {
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 2;
+  }
+
+  a.item-link:link,
+  a.item-link:visited {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+
+    font-size: 0.8rem;
+    transform-origin: center;
+  }
+
+  .item-date {
+    grid-column: 1 / span 2;
+    grid-row: 5 / span 1;
+
+    justify-self: center;
+  }
+}

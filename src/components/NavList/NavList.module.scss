@@ -1,18 +1,24 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
 .nav-list {
   display: flex;
   list-style: none;
   gap: 3rem;
+
+  &--column {
+    flex-flow: column nowrap;
+  }
+
+  &--visible {
+    display: flex !important;
+  }
 }
 
-.nav-list a:link,
-.nav-list a:visited {
-  display: block;
-  padding: 1rem 4.5rem;
-  border-radius: 2.4rem;
-  background-color: rgba(1, 159, 249, 32%);
-}
-
-.nav-list a.active,
-.nav-list a:hover {
-  background-color: rgba(1, 159, 249, 64%);
+@media screen and (max-width: 1090px) {
+  .nav-list {
+    display: none;
+  }
 }

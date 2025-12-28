@@ -1,0 +1,76 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+.checkbox-input-box {
+  border: 1px solid map.get($main-color, "light");
+  border-radius: 9px;
+  position: relative;
+  padding: 1.2rem;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1.5rem;
+
+  .title {
+    position: absolute;
+    background-color: $white-color;
+    padding: 0.5rem;
+    color: map.get($main-color, "light");
+    font-size: 1rem;
+    font-weight: 500;
+
+    top: 0;
+    left: 1rem;
+    transform: translateY(-50%);
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 1.5rem;
+  }
+
+  .input {
+    display: none;
+
+    &:checked + .label .square::after {
+      opacity: 1;
+      transform: scale(0.5);
+    }
+  }
+}
+
+.label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+  width: fit-content;
+  text-wrap: nowrap;
+}
+
+.square {
+  @include element-size(1.2rem);
+
+  border: 1px solid map.get($main-color, "light");
+  border-radius: 3px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include element-size(100%);
+    background-color: map.get($main-color, "light");
+    border-radius: 3px;
+    opacity: 0;
+
+    transition: opacity 0.1s ease-in, transform 0.4s ease-out;
+  }
+}

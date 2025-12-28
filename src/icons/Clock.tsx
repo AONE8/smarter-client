@@ -6,7 +6,7 @@ const Clock = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="size-6"
+      style={{ width: "2rem", height: "2rem" }}
     >
       <path
         strokeLinecap="round"

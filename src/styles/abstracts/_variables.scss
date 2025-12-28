@@ -1,0 +1,21 @@
+@use "sass:map";
+
+$main-color: (
+  "dark": #2830f7,
+  "middledark": #1a59f8,
+  "middlelight": #1074f8,
+  "light": #019ff9,
+);
+
+$gradient-bg-color: linear-gradient(
+  136deg,
+  map.get($main-color, "dark") 0%,
+  map.get($main-color, "middledark") 36%,
+  map.get($main-color, "middlelight") 74%,
+  map.get($main-color, "light") 100%
+);
+
+$gray-color: #0d116e;
+$white-color: #e5f4fc;
+
+$error-color: #a8261b;

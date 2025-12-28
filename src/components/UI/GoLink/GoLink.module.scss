@@ -1,0 +1,32 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+.btn:link,
+.btn:visited {
+  @include flex-center;
+
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+
+  background-color: map.get($main-color, "light");
+  color: $white-color;
+  border-radius: 3px;
+  text-decoration: none;
+
+  transition: gap 0.1s ease-out;
+}
+
+.btn:hover {
+  background-color: map.get($main-color, "middledark");
+  gap: 2rem;
+}
+
+.btn:active {
+  svg {
+    transform: translateX(10rem);
+    opacity: 0;
+    transition: transform 0.4s ease-in, opacity 0.1s ease-out;
+  }
+}

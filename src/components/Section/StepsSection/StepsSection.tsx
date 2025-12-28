@@ -1,42 +1,46 @@
-import Section from "../Section";
-import classes from "./StepsSection.module.scss";
+import { useLanguageContext } from "@/store/langContext";
+import Section from "@/components/Section/Section";
 
-import copmuterImg from "../../../assets/computer_DARKBLUE.png";
-import markImg from "../../../assets/mark_MIDDLEBLUE.png";
-import webImg from "../../../assets/website_LIGHTBLUE.png";
+import copmuterImg from "@/assets/computer_DARKBLUE.svg";
+import markImg from "@/assets/mark_MIDDLEBLUE.svg";
+import webImg from "@/assets/website_LIGHTBLUE.svg";
 
-interface StepItem {
-  text: string;
-  imgSrc: string;
-  altText: string;
-}
+import { sectionTitles, stepsContent } from "@/contens/home";
 
-const steps: StepItem[] = [
+import styles from "./StepsSection.module.scss";
+
+const steps = [
   {
-    text: "Зареєструйтесь або натисніть кнопку «Спробувати», аби спробувати використання форми для заповнення без реєстрації.",
+    text: stepsContent.first,
     imgSrc: copmuterImg,
     altText: "A Computer",
   },
   {
-    text: "Заповніть форму. Введіть дані про бажаний товар та натисніть кнопку «Надіслати».",
+    text: stepsContent.second,
     imgSrc: markImg,
     altText: "A Checkbox",
   },
   {
-    text: "Отримайте гаджет з потрібними характеристиками та найнижчою ціною на ринку.",
+    text: stepsContent.third,
     imgSrc: webImg,
     altText: "A Web Page",
   },
 ];
 
 export default function StepsSection() {
+  const lang = useLanguageContext().language;
+
   return (
-    <Section id="steps" headling="ЯК ЦЕ ПРАЦЮЄ" className={classes["steps"]}>
+    <Section
+      id="steps"
+      headling={sectionTitles.howItWorks[lang]}
+      className={styles["steps"]}
+    >
       {steps.map((step, index) => (
-        <article className={classes["step"]} key={step.altText}>
-          <p className={classes["step-number"]}>{index + 1}</p>
-          <p className={classes["step-description"]}>{step.text}</p>
-          <p className={classes["step-icon-container"]}>
+        <article className={styles["step"]} key={step.altText}>
+          <p className={styles["step-number"]}>{index + 1}</p>
+          <p className={styles["step-description"]}>{step.text[lang]}</p>
+          <p className={styles["step-icon-container"]}>
             <img src={step.imgSrc} alt={step.altText} />
           </p>
         </article>

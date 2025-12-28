@@ -1,0 +1,13 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+.link:link,
+.link:visited {
+  @include smarter-button;
+}
+
+.link {
+  @include smarter-button-hover-active;
+}

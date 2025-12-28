@@ -1,7 +1,8 @@
-import buttonClasses from "./Button.module.scss";
+import styles from "./Button.module.scss";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
+  to?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -12,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`${buttonClasses.btn} ${className ?? ""}`}
+      className={`${styles.btn} ${className ?? ""}`}
       type={type}
       {...props}
     >

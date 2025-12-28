@@ -1,6 +1,10 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+
 .form-section {
   > p {
-    color: #fff;
+    color: $white-color;
     font-size: 3rem;
     font-weight: 400;
     margin-bottom: 3.7rem;
@@ -29,25 +33,25 @@
 
 .btn {
   background-color: transparent;
-  color: white;
+  color: $white-color;
   padding: 1rem 4.5rem;
   border-radius: 2.4rem;
 
-  color: #fff;
-  box-shadow: inset 0px 0px 0px 1px #fff;
+  color: $white-color;
+  box-shadow: inset 0px 0px 0px 1px $white-color;
 }
 
 .btn:hover {
-  background-color: rgb(255, 255, 255, 0.6);
+  background-color: rgb($white-color, 0.6);
   box-shadow: none;
 }
 
 .btn[type="submit"] {
-  background-color: rgb(255, 255, 255, 0.8);
-  color: #1a59f8;
+  background-color: rgb($white-color, 0.8);
+  color: map.get($main-color, "middledark");
   box-shadow: none;
 }
 
 .btn[type="submit"]:hover {
-  background-color: rgb(255, 255, 255, 1);
+  background-color: $white-color;
 }

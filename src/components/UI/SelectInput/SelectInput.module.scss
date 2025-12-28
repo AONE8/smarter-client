@@ -1,0 +1,39 @@
+@import "@/styles/abstracts/variables";
+
+.select-input-box {
+  position: relative;
+  font-size: 1.6rem;
+}
+
+.label {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  transition: all 0.3s ease-in;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem 2rem;
+  border-radius: 9px;
+  font-size: 1.6rem;
+  background-color: $white-color;
+
+  &:not(:placeholder-shown),
+  &:focus {
+    outline: none;
+
+    + .label {
+      top: 0rem;
+      left: -1rem;
+      font-weight: 500;
+      background-color: $white-color;
+      padding: 0.3rem 1rem;
+      transform: translateY(-50%) scale(0.625);
+    }
+  }
+}
+
+.datalist {
+  background-color: $white-color;
+}

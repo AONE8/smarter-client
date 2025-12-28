@@ -1,22 +1,76 @@
+@import "@/styles/abstracts/mixins";
+
 .about-section {
   > div {
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, min-content);
     row-gap: 2.4rem;
     font-size: 2rem;
     text-align: left;
 
-    :nth-child(2n + 1) {
-      grid-column: 1 / span 4;
+    :nth-child(odd) {
+      grid-column: 1 / span 5;
     }
 
-    :nth-child(2n) {
+    :nth-child(even) {
       grid-column: -6 / span 5;
       justify-self: end;
     }
+
+    $i: 2;
+
+    @while $i < 4 {
+      :nth-child(4n-1) {
+        grid-column: -6 / span 5;
+        grid-row: $i / span 1;
+        justify-self: end;
+      }
+
+      :nth-child(4n) {
+        grid-column: 1 / span 5;
+        grid-row: $i / span 1;
+      }
+
+      $i: $i + 2;
+    }
+
+    @media screen and (max-width: 648px) {
+      font-size: 1.6rem;
+
+      :nth-child(n) {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        justify-self: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.img-box {
+  @include flex-start;
+  width: 100%;
+
+  img[id="busy_brain"] {
+    width: 60%;
+  }
+
+  img[id="brain_decitions"] {
+    width: 90%;
   }
 
   img {
-    width: 60%;
-    align-self: center;
+    width: 100%;
   }
+
+  @media screen and (max-width: 648px) {
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+  }
+}
+
+.brand-name {
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
 }

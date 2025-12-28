@@ -1,0 +1,47 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+
+$nav-link-color: #a1dcff;
+
+.body {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  grid-template-columns: 25rem 1fr;
+  grid-template-rows: 7rem 1fr;
+  overflow: hidden;
+
+  @media screen and (max-width: 794px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 524px) {
+    grid-template-rows: 7rem auto 1fr;
+  }
+}
+
+.nav-menu {
+  grid-row: 2 / span 1;
+  grid-column: 1 / -1;
+  justify-content: end;
+  padding-block: 1rem;
+  padding-right: 2rem;
+
+  background-color: map.get($main-color, "middlelight");
+
+  display: none;
+
+  @media screen and (max-width: 524px) {
+    display: flex;
+  }
+}
+
+.nav {
+  ul {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    align-items: center;
+  }
+}

@@ -1,27 +1,42 @@
-import { Link } from "react-router-dom";
+import * as motion from "motion/react-client";
 
-import laptopLogo from "../../assets/laptop.png";
-import monitorLogo from "../../assets/monitor.png";
-import mobilePhoneLogo from "../../assets/mobile-phone.png";
-import watchLogo from "../../assets/watch.png";
-import classes from "./HeroSection.module.scss";
+import LinkBtn from "@/components/UI/LinkBtn/LinkBtn";
+import { useLanguageContext } from "@/store/langContext";
+import { handleScrolling } from "@/libs/handleScrolling";
+
+import { ctaBtn, headerTitle } from "@/contens/home";
+
+import laptopLogo from "@/assets/header-icons/laptop.svg";
+import monitorLogo from "@/assets/header-icons/monitor.svg";
+import mobilePhoneLogo from "@/assets/header-icons/mobile-phone.svg";
+import watchLogo from "@/assets/header-icons/watch.svg";
+
+import styles from "./HeroSection.module.scss";
 
 export default function HeroSection() {
+  const lang = useLanguageContext().language;
+
   return (
-    <section className={classes["hero-section"]}>
-      <h1>ШУКАЙ ШВИДКО ЯКІСНО</h1>
-      <div className={classes["images"]}>
-        <img src={monitorLogo} alt="" />
-        <img src={laptopLogo} alt="" />
-        <img src={mobilePhoneLogo} alt="" />
-        <img src={watchLogo} alt="" />
+    <section className={styles["hero-section"]}>
+      <motion.h1 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
+        {headerTitle[lang]}
+      </motion.h1>
+
+      <div className={styles["actions"]}>
+        <LinkBtn href="/signup" type="main">
+          {ctaBtn.signup[lang]}
+        </LinkBtn>
+        <LinkBtn href="#cta" anchor onClick={handleScrolling}>
+          {ctaBtn.try[lang]}
+        </LinkBtn>
       </div>
-      <div className={classes["actions"]}>
-        <Link to="/signup" className={classes["main-btn"]}>
-          Зареєструватись
-        </Link>
-        <Link to="/search">Спробувати</Link>
-      </div>
+
+      <article className={styles["images"]}>
+        <img src={monitorLogo} alt="Monitor" />
+        <img src={laptopLogo} alt="Laptop" />
+        <img src={mobilePhoneLogo} alt="Mobile Phone" />
+        <img src={watchLogo} alt="Watch" />
+      </article>
     </section>
   );
 }

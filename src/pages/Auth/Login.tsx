@@ -1,44 +1,62 @@
-import { ActionFunctionArgs, redirect, useSubmit } from "react-router-dom";
-import AppForm from "../../components/AppForm/AppForm";
-import Dialog from "../../components/UI/Dialog/Dialog";
-import Input from "../../components/UI/Input/Input";
-import axiosInstance from "../../utils/config/axios";
-import { Token } from "../../utils/token";
-import toast from "react-hot-toast";
-import { renderErrors } from "../../utils/renderErrors";
+import { useId, useState } from "react";
+import { useSubmit } from "react-router-dom";
+
+import { type LoginFormErrors } from "@/types/errors/formErrors";
+
+import AppForm from "@/components/AppForm/AppForm";
+import Dialog from "@/components/UI/Dialog/Dialog";
+import Input from "@/components/UI/Input/Input";
+import { useLanguageContext } from "@/store/langContext";
+
+import { authLabels, loginTitle } from "@/contens/auth";
+import { loginSchema } from "@/schemas/authSchema";
+import { validateFormData } from "@/libs/validateFormData";
+import { SubmitTarget } from "react-router-dom/dist/dom";
 
 export default function Login() {
   const submit = useSubmit();
+  const formId = useId();
+  const [errors, setErrors] = useState<LoginFormErrors>({});
+
+  const lang = useLanguageContext().language;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    submit(event.currentTarget, { method: "post" });
+    const formElement = event.currentTarget;
+
+    const data = validateFormData({
+      formElement,
+      schema: loginSchema,
+      setErrors,
+    });
+
+    if (data) {
+      submit(data as SubmitTarget, {
+        method: "post",
+        encType: "application/json",
+      });
+    }
   };
 
   return (
     <Dialog>
-      <AppForm title="Вхід" linkTo="signup" onSubmit={handleSubmit}>
-        <Input type="email" name="email" label="Електронна пошта" />
-        <Input type="password" name="password" label="Пароль" />
+      <AppForm title={loginTitle[lang]} linkTo="signup" onSubmit={handleSubmit}>
+        <Input
+          type="email"
+          name="email"
+          label={authLabels.email[lang]}
+          error={errors.email}
+          formId={formId}
+        />
+        <Input
+          type="password"
+          name="password"
+          label={authLabels.password[lang]}
+          error={errors.password}
+          formId={formId}
+        />
       </AppForm>
     </Dialog>
   );
-}
-
-export async function loginAction({ request }: ActionFunctionArgs) {
-  try {
-    const formData = await request.formData();
-
-    const result = await axiosInstance.post("/auth/login", formData);
-    Token.setToken(result.data.token);
-
-    toast.success(result.data.message);
-
-    return redirect("/user");
-  } catch (error) {
-    renderErrors(error);
-  }
-
-  return null;
 }

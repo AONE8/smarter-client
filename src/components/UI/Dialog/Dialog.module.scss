@@ -1,10 +1,15 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
 .dialog {
   position: fixed;
   padding: 1rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: $white-color;
   border: none;
   border-radius: 2.9rem;
   overflow: visible;
@@ -13,9 +18,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #019ef98c;
+    @include element-size(100%);
+    background-color: rgba(map.get($main-color, "light"), 0.549);
     backdrop-filter: blur(5px);
   }
 }
@@ -29,12 +33,11 @@
 .button {
   position: relative;
   transform: translate(100%, -100%);
-  width: 3.7rem;
-  height: 3.7rem;
+  @include element-size(3.7rem);
   border-radius: 50%;
 
   border: none;
-  background-color: white;
+  background-color: $white-color;
   cursor: pointer;
 
   transition: all ease-in-out 0.1s;
@@ -43,7 +46,7 @@
 .button:hover {
   &::before,
   &::after {
-    border-color: #019ef9;
+    border-color: map.get($main-color, "light");
   }
 }
 
@@ -60,7 +63,7 @@
   top: 50%;
 
   width: 60%;
-  border: 1px solid black;
+  border: 1px solid $gray-color;
 }
 
 .button::before {
@@ -69,4 +72,26 @@
 
 .button::after {
   transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@media screen and (max-width: 525px) {
+  .dialog {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+
+    &::backdrop {
+      background-color: $white-color;
+    }
+  }
+
+  .dialog-form {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+  }
+}
+
+body:has(.dialog) {
+  overflow: hidden;
 }

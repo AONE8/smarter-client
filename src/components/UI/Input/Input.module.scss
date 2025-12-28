@@ -1,3 +1,7 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+
 .input-box {
   position: relative;
   font-size: 1.6rem;
@@ -7,6 +11,7 @@
     top: 0.5rem;
     left: 1rem;
     transform-origin: left;
+    background-color: $white-color;
     transition: all 0.3s ease-in;
   }
 
@@ -18,8 +23,11 @@
     width: 100%;
     font-size: inherit;
     font-family: inherit;
+    color: inherit;
 
-    border: 3px solid #fff;
+    background-color: $white-color;
+
+    border: 1px solid map.get($main-color, "light");
   }
 
   input:focus,
@@ -29,10 +37,26 @@
     + label {
       top: -0.5rem;
       transform: translateY(-50%) scale(0.8);
-      background-color: #fff;
+
       display: block;
       padding: 0.3rem 1rem;
       border-radius: 9px 9px 0 0;
     }
+  }
+
+  &--invalid {
+    label {
+      color: red;
+    }
+
+    input {
+      border-color: red;
+      color: red;
+    }
+  }
+
+  .error {
+    color: red;
+    font-size: 1rem;
   }
 }

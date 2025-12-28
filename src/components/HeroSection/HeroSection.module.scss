@@ -1,18 +1,37 @@
-@import "../../index.scss";
+@use "sass:math";
+@use "sass:map";
+
+@import "@/styles/abstracts/mixins";
+@import "@/styles/abstracts/variables";
+
+$animation-duration: 2s;
+$total-elements: 4;
+$stagger-delay: math.div($animation-duration, $total-elements);
 
 .hero-section {
   @include container;
-  margin: 6rem 0;
+  & {
+    margin: 6rem auto;
+    max-width: 128rem;
+  }
 }
 
-.hero-section > h1 {
-  grid-column: 1 / span 3;
+.info {
+  grid-row: 1 / span 6;
+  grid-column: 1 / span 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-section h1 {
+  grid-column: 1 / span 4;
+  width: min-content;
   grid-row: 1 / span 3;
   font-size: 7.2rem;
   text-align: left;
-  font-family: "Arial Narrow";
+  font-family: "Inter", sans-serif;
   font-weight: 400;
-  color: #fff;
+  color: $white-color;
 }
 
 .actions {
@@ -21,50 +40,93 @@
   align-self: end;
   display: flex;
   gap: 3rem;
-
-  .main-btn:link,
-  .main-btn:visited {
-    background-color: rgb(255, 255, 255, 0.8);
-    color: #1a59f8;
-    box-shadow: none;
-  }
-
-  .main-btn:hover {
-    background-color: rgb(255, 255, 255, 1);
-  }
-
-  > a:link,
-  > a:visited {
-    display: block;
-    padding: 1rem 4.5rem;
-    border-radius: 2.4rem;
-    text-decoration: none;
-    font-size: 1.6rem;
-
-    color: #fff;
-    box-shadow: inset 0px 0px 0px 1px #fff;
-  }
-
-  > a:hover {
-    background-color: rgb(255, 255, 255, 0.6);
-    box-shadow: none;
-  }
+  margin-top: auto;
 }
 
 .images {
   grid-column: -1 / -6;
   grid-row: 1 / span 6;
 
-  display: flex;
+  @include flex-center;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 5rem;
 
   > img {
     width: 14rem;
+    flex-shrink: 0;
+    animation: device-animation 2s infinite ease-in-out;
+  }
+
+  @for $i from 1 through 4 {
+    $delay: ($i - 1) * $stagger-delay;
+
+    > img:nth-child(#{$i}) {
+      animation-delay: $delay;
+    }
   }
 
   > img[src*="laptop"] {
     width: 16.7rem;
+  }
+
+  @media screen and (max-width: 1146px) {
+    gap: 3rem;
+
+    > img {
+      width: 11rem;
+    }
+
+    > img[src*="laptop"] {
+      width: 13rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1146px) {
+  .actions {
+    margin-top: 6rem;
+  }
+}
+
+@media screen and (max-width: 794px) {
+  .images {
+    margin-top: 6rem;
+    grid-column: 1 / -1;
+    grid-row: 6 / span 6;
+    justify-content: center;
+  }
+
+  .actions {
+    grid-column: 1 / -1;
+    grid-row: 12 / span 1;
+    justify-content: center;
+  }
+
+  .hero-section h1 {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .actions {
+    flex-direction: column;
+  }
+}
+
+@keyframes device-animation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(1.05);
   }
 }

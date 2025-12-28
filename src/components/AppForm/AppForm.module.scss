@@ -1,38 +1,47 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
 
   width: 40rem;
   padding: 3rem;
-  background-color: rgba(255, 255, 255, 0.629);
+  background-color: rgba($white-color, 0.629);
   z-index: 1000;
 
   label {
-    color: #019ff9;
+    color: map.get($main-color, "light");
   }
 
   input {
-    border: 1px solid #019ff9;
+    border: 1px solid map.get($main-color, "light");
   }
 }
 
 .title {
   font-size: 2.8rem;
   font-weight: 400;
+  margin-bottom: 1.5rem;
 }
 
 .actions {
   display: flex;
   justify-content: space-between;
+
+  &:is(:not(:last-child)) {
+    margin-bottom: 3rem;
+  }
 }
 
 .link:link,
 .link:visited {
-  color: #1a59f8;
+  color: map.get($main-color, "middledark");
   text-decoration: none;
   font-size: 1.4rem;
-  border-bottom: 1px solid #1a59f8;
+  border-bottom: 1px solid map.get($main-color, "middledark");
   transition: padding ease-in 0.1s;
 }
 
@@ -42,17 +51,38 @@
 }
 
 .link:active {
-  outline: 2px solid rgba(26, 89, 248, 0.55);
+  outline: 2px solid rgba(map.get($main-color, "middledark"), 0.55);
   outline-offset: 2px;
   border-bottom: none;
   border-radius: 9px;
 }
 
 .inputs-container {
+  padding-top: 1.5rem;
+  margin-bottom: 3rem;
   display: inherit;
   flex-direction: inherit;
-  gap: inherit;
+  gap: 3rem;
   max-height: 25rem;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+@media screen and (max-width: 525px) {
+  .form {
+    @include element-size(100%);
+  }
+
+  .inputs-container {
+    flex: 1;
+    max-height: none;
+    margin-bottom: 3rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 1rem;
+
+    margin-top: auto;
+  }
 }

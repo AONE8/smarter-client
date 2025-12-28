@@ -1,0 +1,27 @@
+@import "../abstracts/variables";
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  color: $gray-color;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  background-color: $white-color;
+}

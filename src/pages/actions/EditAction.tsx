@@ -1,20 +1,16 @@
 import { ActionFunctionArgs, json } from "react-router-dom";
-import axiosInstance from "../../utils/config/axios";
-import { Token } from "../../utils/token";
 import toast from "react-hot-toast";
-import { renderErrors } from "../../utils/renderErrors";
+
+import axiosInstance from "@/api/axios";
+import { renderErrors } from "../../libs/renderErrors";
 
 export async function editAction({ request }: ActionFunctionArgs) {
   try {
     const formData = await request.formData();
 
-    const token = Token.getToken();
+    console.log(Object.fromEntries(formData.entries()));
 
-    const { data } = await axiosInstance.put("/update-user", formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const { data } = await axiosInstance.put("/user/update-user", formData);
 
     toast.success(data.message);
 
@@ -22,4 +18,6 @@ export async function editAction({ request }: ActionFunctionArgs) {
   } catch (error) {
     renderErrors(error);
   }
+
+  return null;
 }

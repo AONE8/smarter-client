@@ -1,14 +1,11 @@
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
 .steps {
-  background-image: linear-gradient(
-    136deg,
-    #2830f7 0%,
-    #1a59f8 36%,
-    #1074f8 74%,
-    #019ff9 100%
-  );
+  background-image: $gradient-bg-color;
 
   > h2 {
-    color: #fff;
+    color: $white-color;
   }
 
   @for $i from 0 through 2 {
@@ -17,18 +14,24 @@
     }
   }
 
+  @media screen and (max-width: 702px) {
+    @for $i from 0 through 2 {
+      :nth-child(#{$i + 1}) {
+        grid-column: (4 * $i + 1) / span 3;
+      }
+    }
+  }
+
   .step {
-    color: #fff;
+    color: $white-color;
     display: flex;
     flex-flow: column nowrap;
     gap: 3rem;
+
     .step-number {
-      border: 5px solid #fff;
-      height: 10rem;
-      width: 10rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      border: 5px solid $white-color;
+      @include element-size(10rem);
+      @include flex-center;
       font-size: 4.8rem;
       border-radius: 19px;
     }
@@ -37,19 +40,41 @@
       font-size: 1.8rem;
     }
     .step-icon-container {
-      width: 11.75rem;
-      height: 11.75rem;
+      @include element-size(11.75rem);
       background-color: rgba(255, 255, 255, 50%);
       border-radius: 50%;
       align-self: flex-end;
       margin-top: auto;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
 
       > img {
         width: 70%;
+      }
+    }
+
+    @media screen and (max-width: 648px) {
+      grid-column: 1 / -1;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+
+      .step-description {
+        width: 40%;
+      }
+
+      .step-icon-container {
+        @include element-size(9.45rem);
+        align-self: start;
+        margin-top: 0;
+      }
+    }
+
+    @media screen and (max-width: 455px) {
+      justify-content: center;
+      .step-icon-container {
+        @include element-size(7.25rem);
       }
     }
   }

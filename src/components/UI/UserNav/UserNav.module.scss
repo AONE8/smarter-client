@@ -1,0 +1,41 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+$nav-link-color: #a1dcff;
+
+.nav {
+  ul {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  a:link,
+  a:visited {
+    background-color: rgba($nav-link-color, 0.32);
+
+    text-decoration: none;
+    color: $white-color;
+  }
+
+  a.active,
+  a:hover {
+    background-color: $nav-link-color;
+    color: map.get($main-color, "middlelight");
+  }
+
+  .logout-btn {
+    @include link;
+    color: $white-color;
+    background-color: rgba($white-color, 45%);
+  }
+
+  .logout-btn:hover,
+  .logout-btn:active {
+    background-color: rgba($white-color, 90%);
+    color: map.get($main-color, "middledark");
+  }
+}

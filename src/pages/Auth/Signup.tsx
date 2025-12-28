@@ -1,48 +1,85 @@
-import { ActionFunctionArgs, redirect, useSubmit } from "react-router-dom";
-import AppForm from "../../components/AppForm/AppForm";
-import Dialog from "../../components/UI/Dialog/Dialog";
-import Input from "../../components/UI/Input/Input";
-import axiosInstance from "../../utils/config/axios";
-import { renderErrors } from "../../utils/renderErrors";
+import { useId, useState } from "react";
+import { useSubmit } from "react-router-dom";
+
+import { type SubmitTarget } from "react-router-dom/dist/dom";
+
+import AppForm from "@/components/AppForm/AppForm";
+import Dialog from "@/components/UI/Dialog/Dialog";
+import Input from "@/components/UI/Input/Input";
+
+import { useLanguageContext } from "@/store/langContext";
+import { authLabels, signupTitle } from "@/contens/auth";
+import { signupSchema } from "@/schemas/authSchema";
+import { validateFormData } from "@/libs/validateFormData";
+import { SignupFormErrors } from "@/types/errors/formErrors";
 
 export default function Signup() {
   const submit = useSubmit();
+  const formId = useId();
+  const [errors, setErrors] = useState<SignupFormErrors>({});
+
+  const lang = useLanguageContext().language;
 
   const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formEl = event.currentTarget;
+    const formElement = event.currentTarget;
 
-    submit(formEl, { method: "post" });
+    const data = validateFormData({
+      formElement,
+      schema: signupSchema,
+      setErrors,
+    });
+
+    if (data) {
+      submit(data as SubmitTarget, {
+        method: "post",
+        encType: "application/json",
+      });
+    }
+  };
+
+  const handleReset = () => {
+    setErrors({});
   };
 
   return (
     <Dialog>
-      <AppForm title="Реєстрація" linkTo="login" onSubmit={handleSumbit}>
-        <Input type="text" name="username" label="Ім'я" />
-        <Input type="email" name="email" label="Електронна пошта" />
-        <Input type="password" name="password" label="Пароль" />
+      <AppForm
+        title={signupTitle[lang]}
+        linkTo="login"
+        onSubmit={handleSumbit}
+        onReset={handleReset}
+      >
+        <Input
+          type="text"
+          name="username"
+          label={authLabels.name[lang]}
+          error={errors.username}
+          formId={formId}
+        />
+        <Input
+          type="email"
+          name="email"
+          label={authLabels.email[lang]}
+          error={errors.email}
+          formId={formId}
+        />
+        <Input
+          type="password"
+          name="password"
+          label={authLabels.password[lang]}
+          error={errors.password}
+          formId={formId}
+        />
         <Input
           type="password"
           name="confirmPassword"
-          label="Підтвердження пароля"
+          label={authLabels.confirmPassword[lang]}
+          error={errors.confirmPassword}
+          formId={formId}
         />
       </AppForm>
     </Dialog>
   );
-}
-
-export async function signupAction({ request }: ActionFunctionArgs) {
-  try {
-    const formData = await request.formData();
-
-    const { data } = await axiosInstance.post("/auth/signup", formData);
-
-    localStorage.setItem("token", data.token);
-    return redirect("/user");
-  } catch (error) {
-    renderErrors(error);
-  }
-
-  return null;
 }

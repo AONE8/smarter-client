@@ -1,36 +1,44 @@
-import classes from "./NavList.module.scss";
+import { FC } from "react";
 
-export default function NavList() {
-  const handleScrolling = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    const targetId = event.currentTarget.getAttribute("href")!.substring(1);
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  };
+import { useLanguageContext } from "@/store/langContext";
+import { handleScrolling } from "@/libs/handleScrolling";
+
+import { homeNavContent } from "@/contens/home";
+
+import styles from "./NavList.module.scss";
+import NavLink from "../UI/NavLink/NavLink";
+
+interface NavListProps {
+  column?: boolean;
+  visible?: boolean;
+}
+
+const NavList: FC<NavListProps> = ({ column = false, visible = false }) => {
+  const lang = useLanguageContext().language;
 
   return (
-    <ul className={classes["nav-list"]}>
+    <ul
+      className={`${styles["nav-list"]} ${
+        column ? styles["nav-list--column"] : ""
+      } ${visible ? styles["nav-list--visible"] : ""}`}
+    >
       <li>
-        <a href="#about" onClick={handleScrolling}>
-          Про нас
-        </a>
+        <NavLink fragment="about" onClick={handleScrolling}>
+          {homeNavContent.about[lang]}
+        </NavLink>
       </li>
       <li>
-        <a href="#steps" onClick={handleScrolling}>
-          Як це працює
-        </a>
+        <NavLink fragment="steps" onClick={handleScrolling}>
+          {homeNavContent.howItWorks[lang]}
+        </NavLink>
       </li>
       <li>
-        <a href="#stores" onClick={handleScrolling}>
-          Магазини
-        </a>
+        <NavLink fragment="manufactures" onClick={handleScrolling}>
+          {homeNavContent.manufactures[lang]}
+        </NavLink>
       </li>
     </ul>
   );
-}
+};
+
+export default NavList;

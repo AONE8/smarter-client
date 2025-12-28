@@ -1,26 +1,43 @@
 import { Link } from "react-router-dom";
 
-import logoURL from "../../../assets/logo1.png";
-import Button from "../../UI/Button/Button";
+import logoURL from "@/assets/logo.webp";
 
-import classes from "../Header/Header.module.scss";
+import ChevronDown from "@/icons/ChevronDown";
+import UserNav from "@/components/UI/UserNav/UserNav";
 
-const Header = () => {
+import styles from "./Header.module.scss";
+
+interface HeaderProps {
+  username: string;
+  menuVisible: boolean;
+  setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setAsideVisble: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header: React.FC<HeaderProps> = ({
+  username,
+  menuVisible,
+  setMenuVisible,
+  setAsideVisble,
+}) => {
   return (
-    <header className={classes.header}>
-      <Link to="/" className={classes.logo}>
+    <header className={styles.header}>
+      <button
+        className={styles["aside-btn"]}
+        onClick={() => setAsideVisble((prev) => !prev)}
+      >
+        <span>{username.charAt(0).toUpperCase()}</span>{" "}
+      </button>
+      <Link to="/" className={styles.logo}>
         <img src={logoURL} alt="Smarter Logo" />
       </Link>
-      <nav className={classes.nav}>
-        <ul>
-          <li>
-            <Link to="/">Головна</Link>
-          </li>
-          <li>
-            <Button className={classes["logout-btn"]}>Вийти</Button>
-          </li>
-        </ul>
-      </nav>
+      <UserNav className={styles.nav} />
+      <button
+        onClick={() => setMenuVisible((prev) => !prev)}
+        className={`${styles["menu-btn"]} ${menuVisible ? styles.active : ""}`}
+      >
+        <ChevronDown />
+      </button>
     </header>
   );
 };

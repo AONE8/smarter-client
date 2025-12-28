@@ -1,0 +1,31 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+.error-body {
+  color: $error-color;
+  margin-top: 4rem;
+
+  @include flex-center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.main-link:link,
+.main-link:visited {
+  @include link;
+  color: $error-color;
+
+  box-shadow: inset 0px 0px 0px 1px $error-color;
+}
+
+.main-link:hover {
+  box-shadow: inset 0px 0px 0px 1px map.get($main-color, "dark");
+  color: map.get($main-color, "dark");
+}
+
+.main-link:active {
+  background-color: map.get($main-color, "dark");
+  color: $white-color;
+}

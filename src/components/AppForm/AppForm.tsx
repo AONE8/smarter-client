@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 
-import AppFormClasses from "./AppForm.module.scss";
-import Button from "../UI/Button/Button";
+import Button from "@/components/UI/Button/Button";
+import { useLanguageContext } from "@/store/langContext";
+
+import { formBtn, loginLinkText, signupLinkText } from "@/contens/form";
+
+import styles from "./AppForm.module.scss";
 
 interface AppFormProps {
   title: string;
   linkTo?: "login" | "signup";
   children: React.ReactNode;
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const AppForm: React.FC<AppFormProps> = ({
@@ -15,23 +20,24 @@ const AppForm: React.FC<AppFormProps> = ({
   linkTo,
   children,
   onSubmit,
+  onReset,
 }) => {
-  return (
-    <form className={AppFormClasses.form} onSubmit={onSubmit}>
-      <h2 className={AppFormClasses.title}>{title}</h2>
-      <div className={AppFormClasses["inputs-container"]}>{children}</div>
+  const lang = useLanguageContext().language;
 
-      <p className={AppFormClasses.actions}>
-        <Button type="reset">Очистити</Button>
-        <Button type="submit">Підтвердити</Button>
+  return (
+    <form className={styles.form} onSubmit={onSubmit} onReset={onReset}>
+      <h2 className={styles.title}>{title}</h2>
+      <div className={styles["inputs-container"]}>{children}</div>
+
+      <p className={styles.actions}>
+        <Button type="reset">{formBtn.reset[lang]}</Button>
+        <Button type="submit">{formBtn.submit[lang]}</Button>
       </p>
 
       {linkTo && (
         <p>
-          <Link to={`/${linkTo}`} className={AppFormClasses.link}>
-            {linkTo === "login"
-              ? "Маєш вже обліковий запис?"
-              : "Ще не маєш обліковий запис?"}
+          <Link to={`/${linkTo}`} className={styles.link}>
+            {linkTo === "login" ? loginLinkText[lang] : signupLinkText[lang]}
           </Link>
         </p>
       )}

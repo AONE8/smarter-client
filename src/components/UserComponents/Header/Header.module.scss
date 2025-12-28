@@ -1,9 +1,14 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
 .header {
   grid-area: 1 / 2 / 2 / -1;
 
-  background-color: rgba(16, 117, 248, 0.634);
-  box-shadow: inset 0 -20px 54px 2px #019ff9;
-  border-bottom: 3px solid #019ff9;
+  background-color: rgba(map.get($main-color, "middlelight"), 0.634);
+  box-shadow: inset 0 -20px 54px 2px map.get($main-color, "light");
+  border-bottom: 3px solid map.get($main-color, "light");
 
   padding: 1rem 2rem;
 
@@ -12,49 +17,116 @@
   justify-content: space-between;
 
   font-size: 1.6rem;
+
+  z-index: 10;
+
+  @media screen and (max-width: 794px) {
+    grid-column-start: 1;
+    gap: 2rem;
+    justify-content: flex-start;
+  }
+  @media screen and (max-width: 525px) {
+    justify-content: space-between;
+  }
 }
 
 .logo {
   height: 100%;
+
+  justify-self: flex-start;
 
   img {
     height: inherit;
   }
 }
 
-.nav {
-  ul {
-    display: flex;
-    gap: 3rem;
-    list-style: none;
-    align-items: center;
-  }
-
-  a:link,
-  a:visited {
-    display: block;
-    padding: 1rem 4.5rem;
-    border-radius: 2.4rem;
-    background-color: rgba(161, 220, 255, 0.32);
-
-    text-decoration: none;
-    color: #fff;
-  }
-
-  a.active,
-  a:hover {
-    background-color: rgba(161, 220, 255);
-  }
-}
-
 .logout-btn {
   &:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: #fff;
+    background-color: rgba($white-color, 0.5);
+    color: $white-color;
   }
 
   &:active {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline: 2px solid rgba($white-color, 0.5);
     outline-offset: 2px;
+  }
+}
+
+.aside-btn {
+  display: none;
+
+  border-radius: 50%;
+  border: 1px solid transparent;
+  @include element-size(5rem);
+  padding: 1rem;
+  flex-shrink: 0;
+
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  background-color: $white-color;
+  font-weight: 700;
+
+  color: map.get($main-color, "dark");
+
+  cursor: pointer;
+
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    box-shadow: 1px 1px 10px 1px rgba($white-color, 0.5);
+  }
+
+  &:active {
+    background-color: rgba($white-color, 0.5);
+  }
+
+  @media screen and (max-width: 794px) {
+    display: flex;
+  }
+}
+
+.menu-btn {
+  display: none;
+
+  border: 1px solid $white-color;
+  padding: 1rem;
+  border-radius: 9px;
+  background-color: transparent;
+  color: $white-color;
+  font-size: 1.6rem;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba($white-color, 0.8);
+    color: map.get($main-color, "dark");
+    box-shadow: 1px 1px 10px 1px rgba($white-color, 0.5);
+
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 524px) {
+    display: flex;
+  }
+
+  &.active {
+    background-color: $white-color;
+    color: map.get($main-color, "dark");
+
+    :first-child {
+      transform: rotateZ(90deg);
+      transform-origin: center;
+    }
+  }
+}
+
+.nav {
+  @media screen and (max-width: 794px) {
+    margin-left: auto;
+  }
+
+  @media screen and (max-width: 525px) {
+    display: none;
   }
 }

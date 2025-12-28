@@ -1,0 +1,29 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+.link:link,
+.link:visited {
+  @include link;
+  background-color: rgba(map.get($main-color, "light"), 0.322);
+  color: $white-color;
+}
+
+.link:active,
+.link:hover {
+  background-color: rgba(map.get($main-color, "light"), 64%);
+}
+
+.action-link:link,
+.action-link:visited {
+  @include link;
+  color: $white-color;
+  background-color: rgba($white-color, 45%);
+}
+
+.action-link:hover,
+.action-link:active {
+  background-color: rgba($white-color, 90%);
+  color: map.get($main-color, "middledark");
+}

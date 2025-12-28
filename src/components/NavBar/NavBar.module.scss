@@ -1,3 +1,8 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
 nav.navigation {
   display: flex;
   width: 100%;
@@ -9,25 +14,52 @@ nav.navigation {
   font-family: sans-serif;
 }
 
-nav.navigation a {
-  text-decoration: none;
-  color: #fff;
-}
-
 a.image-container > img {
   height: 5.3rem;
 }
 
-nav.navigation > a.btn:link,
-nav.navigation > a.btn:visited {
-  display: block;
-  padding: 1rem 4.5rem;
-  border-radius: 2.4rem;
-  background-color: rgba(255, 255, 255, 45%);
+.menu-btn {
+  display: none;
+  background-color: transparent;
+  border: transparent;
+  @include element-size(5rem);
+  border-radius: 50%;
+
+  transform-origin: center;
+
+  transition: background-color 0.3s ease-in;
+
+  cursor: pointer;
+
+  > svg.icon {
+    stroke: $white-color;
+  }
+
+  &:hover {
+    background-color: rgba($white-color, 45%);
+  }
+
+  &:active {
+    background-color: rgba($white-color, 90%);
+
+    > svg.icon {
+      stroke: map.get($main-color, "middledark");
+    }
+  }
 }
 
-nav.navigation > a.btn:hover,
-nav.navigation > a.btn:active {
-  background-color: rgba(255, 255, 255, 90%);
-  color: #1a59f8;
+@media screen and (max-width: 1090px) {
+  .menu-btn {
+    @include flex-center;
+  }
+
+  nav.navigation > a.btn:link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  nav.navigation {
+    padding-inline: 2rem;
+  }
 }

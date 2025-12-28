@@ -1,0 +1,41 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+.aside-menu {
+  width: 25rem;
+  height: 100vh;
+  background-color: map.get($main-color, "middledark");
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+  display: none;
+
+  flex-flow: column nowrap;
+
+  padding: 6rem 4rem;
+
+  font-size: 1.2rem;
+
+  :last-child {
+    margin-top: auto;
+  }
+
+  + .overlay {
+    display: none;
+  }
+
+  @media screen and (max-width: 1090px) {
+    display: flex;
+
+    + .overlay {
+      @include backdrop-element;
+    }
+  }
+}
+
+body:has(.aside-menu) {
+  overflow: hidden;
+}

@@ -1,4 +1,4 @@
-@import "../../index.scss";
+@import "@/styles/abstracts/mixins";
 
 .section {
   padding-bottom: 6.5rem;
@@ -10,6 +10,22 @@
 
   .container {
     @include container;
+  }
+
+  .container.flex {
+    @include flex-container;
+  }
+
+  @media screen and (max-width: 702px) {
+    .container {
+      row-gap: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 455px) {
+    .container {
+      row-gap: 4rem;
+    }
   }
 }
 

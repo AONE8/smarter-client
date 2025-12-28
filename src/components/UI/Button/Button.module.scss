@@ -1,40 +1,26 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
 .btn {
-  display: block;
-  padding: 1rem 3rem;
-  border-radius: 9px;
-  text-decoration: none;
-  font-size: 1.6rem;
-
-  border: none;
-  background-color: rgb(255, 255, 255, 1);
-
-  color: #019ff9;
-  box-shadow: inset 0px 0px 0px 1px #019ff9;
-
-  cursor: pointer;
+  @include smarter-button;
 }
 
-.btn:hover {
-  background-color: #019ef954;
-  box-shadow: none;
-}
-
-.btn:active {
-  outline: 5px solid #019ef954;
-  background-color: rgb(255, 255, 255, 1);
-  outline-offset: 2px;
+.btn {
+  @include smarter-button-hover-active;
 }
 
 .btn[type="submit"] {
-  background-color: #019ff98c;
-  color: #fff;
+  background-color: rgba(map.get($main-color, "light"), 0.549);
+  color: $white-color;
   box-shadow: none;
 }
 
 .btn[type="submit"]:hover {
-  background-color: #1a59f88c;
+  background-color: rgba(map.get($main-color, "middledark"), 0.549);
 }
 
 .btn[type="submit"]:active {
-  outline-color: #1a59f88c;
+  outline-color: rgba(map.get($main-color, "middledark"), 0.549);
 }

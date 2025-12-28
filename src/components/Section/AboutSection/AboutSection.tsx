@@ -1,36 +1,47 @@
-import Section from "../Section";
-import brainDecitionsImg from "../../../assets/brain_decitions.png";
-import busyBrainImg from "../../../assets/brain_is_busy.png";
-import brainWithGoodsImg from "../../../assets/brain_with_goods.png";
+import Section from "@/components/Section/Section";
 
-import classes from "./AboutSection.module.scss";
+import { useLanguageContext } from "@/store/langContext";
+
+import brainDecitionsImg from "@/assets/about-section/brain_decitions.svg";
+import busyBrainImg from "@/assets/about-section/brain_is_busy.svg";
+import brainWithGoodsImg from "@/assets/about-section/brain_with_goods.svg";
+
+import { aboutSectionContent, sectionTitles } from "@/contens/home.tsx";
+
+import styles from "./AboutSection.module.scss";
 
 const AboutSection = () => {
+  const lang = useLanguageContext().language;
+
+  const brandName = <span className={styles["brand-name"]}>smarter</span>;
+
   return (
-    <Section id="about" headling="ПРО НАС" className={classes["about-section"]}>
-      <img
-        src={brainWithGoodsImg}
-        alt="Brain with goods"
-        id="brain_with_goods"
-      />
-      <p>
-        <span>smarter</span> — це вебзастосунок, завдяки якому користувач може
-        знайти необхідний девайс за низькою ціною. До підтримуваних для пошуку
-        девайсів є моноблоки, ноутбуки, смартгодинники та смартфони.
-      </p>
-      <p>
-        <span>smarter</span> шукає девайси з найбільш низькою ціною з-поміж
-        п’яти популярних магазинів. Такими є Rozetka, Comfy, Фокстрот, Stylus та
-        MOYO.
-      </p>
-      <img src={brainDecitionsImg} alt="Brain is deciting" />
-      <img src={busyBrainImg} alt="Busy brain" />
-      <p>
-        Зареєструвавшись, Ви отримаєте можливість вести історію пошуку, перелік
-        бажаних товарів, слідкувати за зміною цін у магазинах. Завдяки зручному
-        інтерфейсу <span>smarter</span> здатен покращити користувацький досвід у
-        пошуку потрібних девайсів.
-      </p>
+    <Section
+      id="about"
+      headling={sectionTitles.about[lang]}
+      className={styles["about-section"]}
+    >
+      <div className={styles["img-box"]}>
+        <img
+          src={brainWithGoodsImg}
+          alt="Brain with goods"
+          id="brain_with_goods"
+        />
+      </div>
+      <p>{aboutSectionContent.goods[lang](brandName)}</p>
+      <div className={styles["img-box"]}>
+        <img
+          src={brainDecitionsImg}
+          alt="Brain is deciting"
+          id="brain_decitions"
+        />
+      </div>
+      <p>{aboutSectionContent.marketpalace[lang](brandName)}</p>
+      <div className={styles["img-box"]}>
+        <img src={busyBrainImg} alt="Busy brain" id="busy_brain" />
+      </div>
+
+      <p>{aboutSectionContent.history[lang](brandName)}</p>
     </Section>
   );
 };

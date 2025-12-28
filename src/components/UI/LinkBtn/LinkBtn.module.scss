@@ -1,27 +1,30 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
 .btn:link,
 .btn:visited {
-  display: block;
-  padding: 1rem 4.5rem;
-  border-radius: 2.4rem;
-  text-decoration: none;
+  @include link;
   font-size: 1.6rem;
 
-  color: #fff;
-  box-shadow: inset 0px 0px 0px 1px #fff;
+  color: $white-color;
+  box-shadow: inset 0px 0px 0px 1px $white-color;
 }
 
 .btn:hover {
-  background-color: rgb(255, 255, 255, 0.6);
+  background-color: rgb($white-color, 0.6);
   box-shadow: none;
 }
 
 .main-btn:link,
 .main-btn:visited {
-  background-color: rgb(255, 255, 255, 0.8);
-  color: #1a59f8;
+  background-color: rgb($white-color, 0.9);
+  color: map.get($main-color, "middledark");
   box-shadow: none;
+  transition: all 0.3s ease-in;
 }
 
 .main-btn:hover {
-  background-color: rgb(255, 255, 255, 1);
+  background-color: #fff;
 }

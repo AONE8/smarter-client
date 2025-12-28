@@ -1,8 +1,8 @@
 import { FormEvent, useEffect, useRef } from "react";
-
-import dialogClasses from "./Dialog.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+
+import styles from "./Dialog.module.scss";
 
 interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   temp?: string;
@@ -11,6 +11,7 @@ interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
 const Dialog: React.FC<DialogProps> = ({ children }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (dialogRef.current) {
@@ -20,15 +21,19 @@ const Dialog: React.FC<DialogProps> = ({ children }) => {
 
   const handleCloseDialog = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const isSearchStringEmpty = location.search.length > 0;
+
     if (dialogRef.current) {
       dialogRef.current.close();
-      navigate(-1);
+
+      navigate(isSearchStringEmpty ? location.pathname : "../");
     }
   };
 
   return (
     <div>
-      <dialog ref={dialogRef} className={dialogClasses.dialog}>
+      <dialog ref={dialogRef} className={styles.dialog}>
         <Toaster
           position="top-right"
           reverseOrder={false}
@@ -41,9 +46,9 @@ const Dialog: React.FC<DialogProps> = ({ children }) => {
         <form
           method="dialog"
           onSubmit={handleCloseDialog}
-          className={dialogClasses["dialog-form"]}
+          className={styles["dialog-form"]}
         >
-          <button className={dialogClasses["button"]}></button>
+          <button className={styles["button"]}></button>
         </form>
       </dialog>
     </div>

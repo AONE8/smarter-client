@@ -1,15 +1,25 @@
-import LinkBtn from "../../../UI/LinkBtn/LinkBtn";
-import classes from "./Header.module.scss";
+import LinkBtn from "@/components/UI/LinkBtn/LinkBtn";
+
+import { useLanguageContext } from "@/store/langContext";
+import { handleScrolling } from "@/libs/handleScrolling";
+
+import { ctaBtn, ctaContent } from "@/contens/home";
+
+import styles from "./Header.module.scss";
 
 export default function Header() {
+  const lang = useLanguageContext().language;
+
   return (
-    <header className={classes.header}>
-      <h3>Заощаджуй час на пошуки свого улюбленого девайсу</h3>
-      <div className={classes["action-box"]}>
+    <header className={styles.header}>
+      <h3>{ctaContent.headerTitle[lang]}</h3>
+      <div className={styles["action-box"]}>
         <LinkBtn href="/signup" type="main">
-          Зареєструватись
+          {ctaBtn.signup[lang]}
         </LinkBtn>
-        <LinkBtn href="/search">Спробувати</LinkBtn>
+        <LinkBtn href="#cta-form" anchor onClick={handleScrolling}>
+          {ctaBtn.try[lang]}
+        </LinkBtn>
       </div>
     </header>
   );

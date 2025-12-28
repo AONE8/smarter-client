@@ -1,10 +1,20 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+
 .main {
   grid-area: 2 / 2 / -1 / -1;
   padding: 3rem 1rem 1rem 1rem;
+  text-align: center;
+  overflow-y: auto;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 3rem;
+  @media screen and (max-width: 794px) {
+    grid-column-start: 1;
+  }
+
+  @media screen and (max-width: 524px) {
+    grid-row-start: 3;
+  }
 }
 
 .device-form {
@@ -12,17 +22,20 @@
   padding-inline: 1rem;
   padding-bottom: 1rem;
 
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: 5rem;
-  width: 65%;
-  margin-inline: auto;
+  justify-content: space-between;
+
+  max-width: 40rem;
+
+  gap: 3rem;
 }
 
 .fieldset {
-  flex: 1 1 calc(33% - 1rem);
+  flex-shrink: 1;
+  width: 13rem;
   display: flex;
-  flex-direction: column;
+
   align-items: center;
   border: none;
 
@@ -34,9 +47,9 @@
     transition: all ease-out 0.1s;
 
     &:hover {
-      outline: 5px solid rgba(26, 89, 248, 0.3);
+      outline: 5px solid rgba(map.get($main-color, "middledark"), 0.302);
       outline-offset: 2px;
-      color: rgb(26, 89, 248);
+      color: map.get($main-color, "middledark");
 
       img {
         filter: brightness(0.8);
@@ -45,7 +58,7 @@
     }
 
     &:active {
-      outline: 2px solid rgba(26, 89, 248, 0.1);
+      outline: 2px solid rgba(map.get($main-color, "middledark"), 0.1);
       outline-offset: 5px;
       img {
         filter: brightness(1.5);

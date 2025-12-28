@@ -1,0 +1,6 @@
+.error-section {
+  padding: 2rem;
+  @media screen and (max-width: 794px) {
+    grid-column: 1 / -1;
+  }
+}

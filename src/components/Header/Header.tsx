@@ -1,12 +1,19 @@
-import HeroSection from "../HeroSection/HeroSection";
-import NavBar from "../NavBar/NavBar";
-import classes from "./Header.module.scss";
+import HeroSection from "@/components/HeroSection/HeroSection";
+import NavBar from "@/components/NavBar/NavBar";
 
-export default function Header() {
+import styles from "./Header.module.scss";
+
+interface NavBarProps {
+  setIsAsideMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header: React.FC<NavBarProps> = ({ setIsAsideMenu }) => {
   return (
-    <header className={classes.header}>
-      <NavBar />
+    <header className={styles.header}>
+      <NavBar setIsAsideMenu={setIsAsideMenu} />
       <HeroSection />
     </header>
   );
-}
+};
+
+export default Header;

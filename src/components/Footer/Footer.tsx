@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import footerLogo from "@/assets/footer-logo.webp";
 
-import footerLogo from "../../assets/footer-logo.png";
-import footerClassses from "./Footer.module.scss";
+import LangSwitchButton from "../LangSwitchButton/LangSwitchButton";
+
+import styles from "./Footer.module.scss";
 
 export default function Footer() {
-  const scrollToTop = () => {
+  const scrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -12,14 +15,17 @@ export default function Footer() {
   };
 
   return (
-    <footer className={footerClassses.footer}>
-      <Link to="/" onClick={scrollToTop}>
+    <footer className={styles.footer}>
+      <a href="#" onClick={scrollToTop}>
         <img
           src={footerLogo}
           alt="Blue Brain"
-          className={footerClassses["footer-logo"]}
+          className={styles["footer-logo"]}
         />
-      </Link>
+      </a>
+      <p>
+        <LangSwitchButton />
+      </p>
       <p>© Copyright Andrii Malyshko, {new Date().getFullYear()}</p>
     </footer>
   );

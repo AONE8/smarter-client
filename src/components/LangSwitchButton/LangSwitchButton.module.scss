@@ -1,0 +1,39 @@
+@use "sass:map";
+
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+.switch-btn {
+  @include flex-center;
+
+  background-color: transparent;
+  border: none;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 9px;
+  box-shadow: inset 0 0 0 1px map.get($main-color, "light");
+
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    color: map.get($main-color, "dark");
+    box-shadow: inset 0 0 0 1px map.get($main-color, "dark");
+  }
+
+  &:active {
+    color: $white-color;
+    box-shadow: inset 0 0 0 50px map.get($main-color, "dark");
+
+    .icon {
+      stroke: $white-color;
+    }
+  }
+}
+
+.icon {
+  @include element-size(2.4rem);
+  stroke: map.get($main-color, "dark");
+
+  transition: box-shadow 0.3s ease-in;
+}
