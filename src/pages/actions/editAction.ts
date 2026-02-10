@@ -2,7 +2,7 @@ import { ActionFunctionArgs, json } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import axiosInstance from "@/api/axios";
-import { renderErrors } from "../../libs/renderErrors";
+import { renderErrors } from "@/libs/renderErrors";
 
 export async function editAction({ request }: ActionFunctionArgs) {
   try {

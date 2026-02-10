@@ -20,7 +20,7 @@ import { historyLoader } from "./pages/loaders/historyLoader";
 
 import { signupAction } from "./pages/actions/signupAction";
 import { loginAction } from "./pages/actions/loginAction";
-import { editAction } from "./pages/actions/editAction";
+import { editAction } from "./pages/actions/editAction.ts";
 import { searchDeviceAction } from "./pages/actions/searchDeviceAction";
 import { deleteUserAction } from "./pages/actions/deleteUserAction";
 import { deleteHistoryAction } from "./pages/actions/deleteHistoryAction";
@@ -101,7 +101,7 @@ const router = createBrowserRouter(
       ],
     },
   ],
-  { future: { v7_partialHydration: true, v7_relativeSplatPath: true } }
+  { future: { v7_partialHydration: true, v7_relativeSplatPath: true } },
 );
 
 function App() {
