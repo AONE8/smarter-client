@@ -2,14 +2,15 @@ import { useNavigation, useSubmit } from "react-router-dom";
 
 import { type DeviceForm } from "@/types/DeviceForm.type";
 
-import AppForm from "@/components/AppForm/AppForm";
+import { useLanguageContext } from "@/store/langContext";
 
+import AppForm from "@/components/AppForm/AppForm";
 import Dialog from "@/components/UI/Dialog/Dialog";
 import CheckboxInput from "@/components/UI/CheckboxInput/CheckboxInput";
 import RadioInput from "@/components/UI/RadioInput/RadioInput";
 import SelectInput from "@/components/UI/SelectInput/SelectInput";
 import Loader from "@/components/UI/Loader/Loader";
-import { useLanguageContext } from "@/store/langContext";
+import { isFormDataEmpty } from "@/libs/isFormDataEmpty";
 
 interface DialogModuleProps extends React.HTMLAttributes<HTMLElement> {
   deviceForm: DeviceForm;
@@ -27,6 +28,8 @@ const DialogModule: React.FC<DialogModuleProps> = ({ deviceForm }) => {
 
     const formEl = event.currentTarget;
     const formData = new FormData(formEl);
+
+    if (isFormDataEmpty(formData)) return;
 
     const newFormData = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
